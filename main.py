@@ -20,7 +20,7 @@ def save():
             website.delete(0, END)
             password.delete(0, END)
     else:
-        messagebox.showinfo(title='Error', message='Invalid data')
+        messagebox.showinfo(title='Error', message='Founded blank field.')
 
 
 def check_input(web, log, passw):
