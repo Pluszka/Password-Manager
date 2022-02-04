@@ -7,9 +7,8 @@ FONT_DESC = ("Courier", 10, 'bold')
 
 
 def save():
-    new_data = [{'Website': website.get(), 'Login/Email': login.get(), 'Password': password.get()},]
-    df = pandas.DataFrame.from_dict(new_data)
-    df.to_csv('Passwords_data.csv')
+    with open('Password_data.txt', 'a') as file:
+        file.write(f'{website.get()} | {login.get()} | {password.get()}\n\n')
     website.delete(0, END)
     password.delete(0, END)
 
