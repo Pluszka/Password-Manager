@@ -1,8 +1,18 @@
 from tkinter import *
+import pandas
 FONT_DESC = ("Courier", 10, 'bold')
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+
+
+def save():
+    new_data = [{'Website': website.get(), 'Login/Email': login.get(), 'Password': password.get()},]
+    df = pandas.DataFrame.from_dict(new_data)
+    df.to_csv('Passwords_data.csv')
+    website.delete(0, END)
+    password.delete(0, END)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 root = Tk()
@@ -26,9 +36,11 @@ label1.grid(row=3, column=0)
 
 website = Entry(width=55)
 website.grid(row=1, column=1, columnspan=2, sticky='w')
+website.focus()
 
 login = Entry(width=55)
 login.grid(row=2, column=1, columnspan=2, sticky='w')
+login.insert(END, 'youremail@gmail.com')
 
 password = Entry(width=25)
 password.grid(row=3, column=1, sticky='w')
@@ -36,7 +48,7 @@ password.grid(row=3, column=1, sticky='w')
 generate = Button(text='Generate Password', width=15)
 generate.grid(row=3, column=2, sticky='w')
 
-add = Button(text='Add', width=45)
+add = Button(text='Add', width=45, command=save)
 add.grid(row=4, column=1, columnspan=2, sticky='w')
 
 root.mainloop()
