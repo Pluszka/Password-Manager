@@ -24,4 +24,13 @@ label2.grid(row=2, column=0)
 label1 = Label(text='Password:', font=FONT_DESC)
 label1.grid(row=3, column=0)
 
+website = Entry(width=35)
+website.grid(row=1, column=1, columnspan=2)
+
+login = Entry(width=35)
+login.grid(row=2, column=1, columnspan=2)
+
+password = Entry(width=21)
+password.grid(row=3, column=1)
+
 root.mainloop()
