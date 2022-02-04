@@ -1,5 +1,5 @@
 from tkinter import *
-FONT_DESC = ("Courier", 12, 'bold')
+FONT_DESC = ("Courier", 10, 'bold')
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
@@ -33,4 +33,9 @@ login.grid(row=2, column=1, columnspan=2)
 password = Entry(width=21)
 password.grid(row=3, column=1)
 
+generate = Button(text='Generate Password')
+generate.grid(row=3, column=2)
+
+add = Button(text='Add')
+add.grid(row=4, column=1)
 root.mainloop()
