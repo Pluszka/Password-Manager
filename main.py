@@ -1,5 +1,5 @@
 from tkinter import *
-import pandas
+from tkinter import messagebox
 FONT_DESC = ("Courier", 10, 'bold')
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -7,10 +7,26 @@ FONT_DESC = ("Courier", 10, 'bold')
 
 
 def save():
-    with open('Password_data.txt', 'a') as file:
-        file.write(f'{website.get()} | {login.get()} | {password.get()}\n\n')
-    website.delete(0, END)
-    password.delete(0, END)
+    input_website = website.get()
+    input_login = login.get()
+    input_password = password.get()
+
+    if check_input(input_website, input_login, input_password):
+        is_ok = messagebox.askokcancel(title=website, message="Are you sure?")
+
+        if is_ok:
+            with open('Password_data.txt', 'a') as file:
+                file.write(f'{input_website} | {input_login} | {input_password}\n\n')
+            website.delete(0, END)
+            password.delete(0, END)
+    else:
+        messagebox.showinfo(title='Error', message='Invalid data')
+
+
+def check_input(web, log, passw):
+    if len(web) > 1 and len(log) > 1 and len(passw) > 1:
+        return True
+    return False
 
 
 # ---------------------------- UI SETUP ------------------------------- #
