@@ -27,13 +27,19 @@ def save():
     }
 
     if check_input(input_website, input_login, input_password):
-        with open('Password_data.json', 'r') as file:
+        try:
+            file = open('Password_data.json', 'r')
+        except FileNotFoundError:
+            data = new_data
+        else:
             data = json.load(file)
             data.update(new_data)
-        with open('Password_data.json', 'w') as file:
-            json.dump(data, file, indent=4)
-        website.delete(0, END)
-        password.delete(0, END)
+            file.close()
+        finally:
+            with open('Password_data.json', 'w') as file:
+                json.dump(data, file, indent=4)
+            website.delete(0, END)
+            password.delete(0, END)
     else:
         messagebox.showinfo(title='Error', message='Founded blank field.')
 
