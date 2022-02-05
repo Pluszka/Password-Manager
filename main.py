@@ -1,8 +1,11 @@
 from tkinter import *
 from tkinter import messagebox
+from generator import gen
 FONT_DESC = ("Courier", 10, 'bold')
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
-
+def random_password():
+    password.delete(0, END)
+    password.insert(1,gen()
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 
@@ -60,7 +63,7 @@ login.insert(END, 'youremail@gmail.com')
 password = Entry(width=25)
 password.grid(row=3, column=1, sticky='w')
 
-generate = Button(text='Generate Password', width=15)
+generate = Button(text='Generate Password', width=15, command=random_password)
 generate.grid(row=3, column=2, sticky='w')
 
 add = Button(text='Add', width=45, command=save)
