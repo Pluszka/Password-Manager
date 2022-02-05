@@ -50,15 +50,26 @@ def check_input(web, log, passw):
     return False
 
 # ---------------------------- PASSWORDFINDER ------------------------------- #
+
+
 def find_password():
     wanted = website.get()
     try:
         with open('Password_data.json', 'r') as file:
-            library = file.load()
+            library = json.load(file)
     except FileNotFoundError:
         messagebox.showinfo(title='No database', message='You haven\'t any data already.')
     else:
-        pass
+        for item in library:
+            if wanted in library:
+                if item == wanted:
+                    result = library[item]
+                    messagebox.showinfo(title='Found', message=f'Login: {result["email/login"]}\n'
+                                                               f'Password: {result["password"]}')
+            else:
+                messagebox.showinfo(title='Not Found', message='Website is\'t at database yet.')
+
+
 # ---------------------------- UI SETUP ------------------------------- #
 root = Tk()
 root.title('Password Manager')
