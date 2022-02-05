@@ -49,7 +49,16 @@ def check_input(web, log, passw):
         return True
     return False
 
-
+# ---------------------------- PASSWORDFINDER ------------------------------- #
+def find_password():
+    wanted = website.get()
+    try:
+        with open('Password_data.json', 'r') as file:
+            library = file.load()
+    except FileNotFoundError:
+        messagebox.showinfo(title='No database', message='You haven\'t any data already.')
+    else:
+        pass
 # ---------------------------- UI SETUP ------------------------------- #
 root = Tk()
 root.title('Password Manager')
@@ -87,7 +96,7 @@ generate.grid(row=3, column=2, sticky='w')
 add = Button(text='Add', width=45, command=save)
 add.grid(row=4, column=1, columnspan=2, sticky='w')
 
-search = Button(text='Search',  width=15)
+search = Button(text='Search',  width=15, command=find_password)
 search.grid(row=1, column=2, sticky='w')
 
 root.mainloop()
