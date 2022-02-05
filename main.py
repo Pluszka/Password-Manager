@@ -10,7 +10,7 @@ FONT_DESC = ("Courier", 10, 'bold')
 def random_password():
     generated = gen()
     password.delete(0, END)
-    password.insert(1,generated)
+    password.insert(1, generated)
     pyperclip.copy(generated)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
@@ -22,13 +22,16 @@ def save():
     new_data = {
         input_website: {
             'email/login': input_login,
-            'password': input_password
+            'password': input_password,
         }
     }
 
     if check_input(input_website, input_login, input_password):
+        with open('Password_data.json', 'r') as file:
+            data = json.load(file)
+            data.update(new_data)
         with open('Password_data.json', 'w') as file:
-            json.dump(new_data, file)
+            json.dump(data, file, indent=4)
         website.delete(0, END)
         password.delete(0, END)
     else:
@@ -36,7 +39,7 @@ def save():
 
 
 def check_input(web, log, passw):
-    if len(web) > 1 and len(log) > 1 and len(passw) > 1:
+    if len(web) > 0 and len(log) > 0 and len(passw) > 0:
         return True
     return False
 
