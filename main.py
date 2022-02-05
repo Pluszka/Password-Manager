@@ -20,13 +20,10 @@ def save():
     input_password = password.get()
 
     if check_input(input_website, input_login, input_password):
-        is_ok = messagebox.askokcancel(title=website, message="Are you sure?")
-
-        if is_ok:
-            with open('Password_data.txt', 'a') as file:
-                file.write(f'{input_website} | {input_login} | {input_password}\n\n')
-            website.delete(0, END)
-            password.delete(0, END)
+        with open('Password_data.txt', 'a') as file:
+            file.write(f'{input_website} | {input_login} | {input_password}\n\n')
+        website.delete(0, END)
+        password.delete(0, END)
     else:
         messagebox.showinfo(title='Error', message='Founded blank field.')
 
