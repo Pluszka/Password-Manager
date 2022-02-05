@@ -1,11 +1,16 @@
 from tkinter import *
 from tkinter import messagebox
 from generator import gen
+import pyperclip
 FONT_DESC = ("Courier", 10, 'bold')
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+
+
 def random_password():
+    generated = gen()
     password.delete(0, END)
-    password.insert(1,gen()
+    password.insert(1,generated)
+    pyperclip.copy(generated)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 
