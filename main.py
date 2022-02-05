@@ -70,11 +70,11 @@ label2.grid(row=2, column=0)
 label1 = Label(text='Password:', font=FONT_DESC)
 label1.grid(row=3, column=0)
 
-website = Entry(width=55)
-website.grid(row=1, column=1, columnspan=2, sticky='w')
+website = Entry(width=25)
+website.grid(row=1, column=1, sticky='w')
 website.focus()
 
-login = Entry(width=55)
+login = Entry(width=53)
 login.grid(row=2, column=1, columnspan=2, sticky='w')
 login.insert(END, 'youremail@gmail.com')
 
@@ -86,5 +86,8 @@ generate.grid(row=3, column=2, sticky='w')
 
 add = Button(text='Add', width=45, command=save)
 add.grid(row=4, column=1, columnspan=2, sticky='w')
+
+search = Button(text='Search',  width=15)
+search.grid(row=1, column=2, sticky='w')
 
 root.mainloop()
