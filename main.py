@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from generator import gen
 import pyperclip
+import json
 FONT_DESC = ("Courier", 10, 'bold')
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -18,10 +19,16 @@ def save():
     input_website = website.get()
     input_login = login.get()
     input_password = password.get()
+    new_data = {
+        input_website: {
+            'email/login': input_login,
+            'password': input_password
+        }
+    }
 
     if check_input(input_website, input_login, input_password):
-        with open('Password_data.txt', 'a') as file:
-            file.write(f'{input_website} | {input_login} | {input_password}\n\n')
+        with open('Password_data.json', 'w') as file:
+            json.dump(new_data, file)
         website.delete(0, END)
         password.delete(0, END)
     else:
